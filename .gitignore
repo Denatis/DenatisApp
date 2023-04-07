@@ -363,3 +363,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/DenatisApp/nlog.config
+/DenatisApp/appsettings.json
+/DenatisApp/appsettings.Development.json
+/DenatisApp/nlog.config
