@@ -33,7 +33,6 @@ namespace DenatisApp.Controllers
         [HttpPost("Login")]
         public IActionResult Login(AuthenticationCreds creds)
         {
-            _logger.LogError("This is the first error");
             IActionResult response;
 
             User? currentUser = Authenticate(creds);

@@ -15,23 +15,23 @@ builder.Services.ConfigureDbContext(builder.Configuration);
 builder.Services.ConfigureLoggerService();
 
 // Swagger
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddSwaggerGen();
 
 // Add Authentication
 builder.Services.ConfigureAuthentication(builder.Configuration);
 
 // Add SPA
-//builder.Services.ConfigureSPA();
+builder.Services.ConfigureSPA();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//Configure the HTTP request pipeline.
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
 
 app.UseHttpsRedirection();
 
@@ -44,15 +44,19 @@ app.UseAuthorization();
 app.MapControllers();
 
 //app.UseSpaStaticFiles();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
-//app.UseSpa(spa =>
-//{
-//    spa.Options.SourcePath = "clientapp";
+app.UseSpa(spa =>
+{
+    spa.Options.SourcePath = "ClientApp";
 
-//    if (app.Environment.IsDevelopment())
-//    {
-//        spa.UseAngularCliServer(npmScript: "start");
-//    }
-//});
+    if (app.Environment.IsDevelopment())
+    {
+        spa.UseAngularCliServer(npmScript: "start");
+    }
+});
 
 app.Run();
